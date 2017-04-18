@@ -1,25 +1,5 @@
-# README
-
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
 # review-site
+
+![Build Status](https://codeship.com/projects/b4c0dc60-0687-0135-1c2c-4ed15a318303/status?branch=master)
+![Code Climate](https://codeclimate.com/github/shinyoungleeee/review-site.png)
+![Coverage Status](https://coveralls.io/repos/shinyoungleeee/review-site/badge.png)
