@@ -1,8 +1,8 @@
 require 'rails_helper'
 
-feature "User signs out" do
- scenario "user signs out successfully" do
-   user = create(:user)
+feature 'User signs out' do
+ scenario 'user signs out successfully' do
+   create(:user)
 
    visit new_user_session_path
 
@@ -11,6 +11,6 @@ feature "User signs out" do
    click_on 'Log in'
    click_on 'Sign out'
 
-   expect(page).to have_content "Signed out successfully."
+   expect(page).to have_content 'Signed out successfully.'
  end
 end
