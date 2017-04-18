@@ -6,4 +6,4 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-ancient_aliens = Meme.create(name: "Ancient Aliens", image_url: "http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg", description: "I don't know, therefore aliens.")
+ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg', description: 'I don\'t know, therefore aliens.')
