@@ -3,8 +3,11 @@ require 'rails_helper'
 feature 'vistor sees a list of memes' do
     scenario 'sees a list of memes and link for new meme' do
 
-      ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg', description: 'I don\'t know, therefore aliens.')
-      baby_godfather = Meme.create(name: 'Baby Godfather', image_url: 'http://i2.kym-cdn.com/photos/images/newsfeed/000/174/143/finding-nemo-blanket.jpeg')
+      aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
+      godfather_url = 'http://i2.kym-cdn.com/photos/images/newsfeed/000/174/143/finding-nemo-blanket.jpeg'
+
+      Meme.create(name: 'Ancient Aliens', image_url: "#{aliens_url}", description: 'therefore aliens.')
+      Meme.create(name: 'Baby Godfather', image_url: "#{godfather_url}")
 
       visit memes_path
 
