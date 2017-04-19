@@ -1,1 +1,24 @@
-<h1>New Meme!</h1>
+<h1> Submit a Meme </h1>
+<% unless @meme.errors.empty? %>
+  <div>
+    <%= @meme.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+<%= form_for(@meme) do |f| %>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :description %>
+    <%= f.text_area :description%>
+  </div>
+  <div class="field">
+    <%= f.label :image_url, "Link to Image"%>
+    <%= f.text_area :image_url%>
+  </div>
+  <div class="actions">
+    <%= f.submit "Add Meme"%>
+  </div>
+<% end %>
+<p><%= link_to "Back", root_path %></p>
