@@ -1,10 +1,12 @@
 .top-bar {
   background: image-url("weather.png");
+
   .menu {
     background-color: transparent;
-    a {
-      color: black;
-    }
+  }
+
+  a {
+    color: $black;
   }
 }
 
