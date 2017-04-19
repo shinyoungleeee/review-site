@@ -2,13 +2,29 @@
   <h1>Memes</h1>
 </div>
 
-<div class="row">
-  <ul>
-    <% @memes.each do |meme| %>
-      <li><%= link_to meme.name %></li>
-      <li><img src='<%= meme.image_url %>'></li>
-    <% end %>
-  </ul>
+<% i = 0 %>
+<% while i < @memes.length do %>
+  <div class="row text-center">
+    <div class="small-12 large-4 columns">
+      <h3><%= link_to @memes[i].name, meme_path(@memes[i].id) %></h3>
+      <img src=<%= @memes[i].image_url %> alt=<%= @memes[i].name %> class="thumbnail">
+    </div>
+    <div class="small-12 large-4 columns">
+      <% if @memes[i+1] %>
+        <h3><%= link_to @memes[i+1].name, meme_path(@memes[i+1].id) %></h3>
+        <img src=<%= @memes[i+1].image_url %> alt=<%= @memes[i+1].name %> class="thumbnail">
+      <% end %>
+    </div>
+    <div class="small-12 large-4 columns">
+      <% if @memes[i+2] %>
+        <h3><%= link_to @memes[i+2].name, meme_path(@memes[i+2].id) %></h3>
+        <img src=<%= @memes[i+2].image_url %> alt=<%= @memes[i+2].name %> class="thumbnail">
+      <% end %>
+    </div>
+  </div>
+  <% i += 3 %>
+<% end %>
 
+<div class="row">
   <h5><%= link_to 'Add New Meme!', new_meme_path %></h5>
 </div>
