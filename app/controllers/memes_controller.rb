@@ -11,7 +11,6 @@ class MemesController < ApplicationController
 
   def create
     @meme = Meme.new(meme_params)
-
     if @meme.save
       flash[:success] = 'Meme added successfully'
       redirect_to meme_path(@meme)
@@ -20,7 +19,7 @@ class MemesController < ApplicationController
       render :new
     end
   end
-    
+
   def show
     @meme = Meme.find(params[:id])
   end
@@ -28,11 +27,9 @@ class MemesController < ApplicationController
   def secret
   end
 
+  private
 
   def meme_params
     params.require(:meme).permit(:name, :image_url, :description)
   end
-
-
-
 end

@@ -12,13 +12,12 @@ feature 'users can add memes' do
 
     click_button 'Add Meme'
 
-
     expect(page).to have_content 'Meme added successfully'
     expect(page).to have_content 'Conspiracy Keanu'
     expect(page).to have_content 'Taken from the 1989 comedy film Bill & Ted’s Excellent Adventure'
   end
 
-    scenario 'user does not provide proper information for a meme' do
+  scenario 'user does not provide proper information for a meme' do
     visit new_meme_path
 
     click_button 'Add Meme'
