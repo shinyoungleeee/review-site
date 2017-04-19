@@ -7,7 +7,6 @@ class MemesController < ApplicationController
 
   def new
     @meme = Meme.new
-
   end
 
   def create
@@ -20,6 +19,10 @@ class MemesController < ApplicationController
       flash[:errors] = @meme.errors.full_messages.join(', ')
       render :new
     end
+  end
+    
+  def show
+    @meme = Meme.find(params[:id])
   end
 
   def secret
