@@ -7,18 +7,18 @@
   <div class="row text-center">
     <div class="small-12 large-4 columns">
       <h3><%= link_to @memes[i].name, meme_path(@memes[i].id) %></h3>
-      <img src=<%= @memes[i].image_url %> alt=<%= @memes[i].name %> class="thumbnail">
+      <%= link_to image_tag(@memes[i].image_url, :alt => @memes[i].name, :class => "thumbnail"), meme_path(@memes[i].id) %>
     </div>
     <div class="small-12 large-4 columns">
       <% if @memes[i+1] %>
         <h3><%= link_to @memes[i+1].name, meme_path(@memes[i+1].id) %></h3>
-        <img src=<%= @memes[i+1].image_url %> alt=<%= @memes[i+1].name %> class="thumbnail">
+        <%= link_to image_tag(@memes[i+1].image_url, :alt => @memes[i+1].name, :class => "thumbnail"), meme_path(@memes[i+1].id) %>
       <% end %>
     </div>
     <div class="small-12 large-4 columns">
       <% if @memes[i+2] %>
         <h3><%= link_to @memes[i+2].name, meme_path(@memes[i+2].id) %></h3>
-        <img src=<%= @memes[i+2].image_url %> alt=<%= @memes[i+2].name %> class="thumbnail">
+        <%= link_to image_tag(@memes[i+2].image_url, :alt => @memes[i+2].name, :class => "thumbnail"), meme_path(@memes[i+2].id) %>
       <% end %>
     </div>
   </div>
