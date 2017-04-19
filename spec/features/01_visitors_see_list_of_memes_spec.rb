@@ -6,8 +6,8 @@ feature 'vistor sees a list of memes' do
       aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
       godfather_url = 'http://i2.kym-cdn.com/photos/images/newsfeed/000/174/143/finding-nemo-blanket.jpeg'
 
-      Meme.create(name: 'Ancient Aliens', image_url: "#{aliens_url}", description: 'therefore aliens.')
-      Meme.create(name: 'Baby Godfather', image_url: "#{godfather_url}")
+      Meme.create(name: 'Ancient Aliens', image_url: aliens_url.to_s, description: 'therefore aliens.')
+      Meme.create(name: 'Baby Godfather', image_url: godfather_url.to_s)
 
       visit memes_path
 
