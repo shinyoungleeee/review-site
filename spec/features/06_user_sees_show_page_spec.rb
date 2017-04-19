@@ -1,6 +1,5 @@
 require 'rails_helper'
 
-
 feature 'visitor sees meme show page' do
   scenario 'user clicks meme name or image and sees meme title and image' do
     aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
