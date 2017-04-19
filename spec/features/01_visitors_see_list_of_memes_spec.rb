@@ -9,7 +9,7 @@ feature 'vistor sees a list of memes' do
       visit memes_path
 
       expect(page).to have_content 'Ancient Aliens'
-      expect(page).to have_css('img[src*='http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg']')
+      expect(page).to have_css("img[src*='http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg']")
 
       expect(page).to have_link 'Baby Godfather'
 
