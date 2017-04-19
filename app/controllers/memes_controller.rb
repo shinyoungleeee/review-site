@@ -14,7 +14,7 @@ class MemesController < ApplicationController
     @meme = Meme.new(meme_params)
 
     if @meme.save
-      flash[:success] = 'Meme successfully added!'
+      flash[:success] = 'Meme added successfully'
       redirect_to meme_path(@meme)
     else
       flash[:errors] = @meme.errors.full_messages.join(', ')

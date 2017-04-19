@@ -12,6 +12,7 @@ feature 'users can add memes' do
 
     click_button 'Add Meme'
 
+
     expect(page).to have_content 'Meme added successfully'
     expect(page).to have_content 'Conspiracy Keanu'
     expect(page).to have_content 'Taken from the 1989 comedy film Bill & Ted’s Excellent Adventure'
@@ -22,6 +23,6 @@ feature 'users can add memes' do
 
     click_button 'Add Meme'
     expect(page).to have_content 'Name can\'t be blank'
-    expect(page).to have_content 'Link to Image can\'t be blank'
+    expect(page).to have_content 'Image url can\'t be blank'
   end
 end
