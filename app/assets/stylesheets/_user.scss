@@ -1,0 +1,15 @@
+#error_explanation {
+  border: 1px solid $alert-color;
+  color: $alert-color;
+  margin-bottom: 20px;
+  padding: 20px 20px 0;
+
+  h2 {
+    font-size: 1em;
+    font-weight: bold;
+  }
+
+  li {
+    font-size: 1em;
+  }
+}

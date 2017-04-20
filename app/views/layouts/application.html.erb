@@ -12,6 +12,12 @@
   </head>
 
   <body>
+    <% flash.each do |type, message| %>
+      <div class="<%= "flash #{type}" %>">
+         <%= message %>
+      </div>
+    <% end %>
+    
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="menu">
@@ -34,12 +40,6 @@
         </ul>
       </div>
     </div>
-
-    <% flash.each do |type, message| %>
-      <div>
-         <%= message %>
-      </div>
-    <% end %>
 
     <%= yield %>
 
