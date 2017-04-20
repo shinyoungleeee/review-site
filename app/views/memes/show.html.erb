@@ -1,5 +1,6 @@
 <div class="row text-center">
   <h1><%= @meme.name %></h1>
+  <p><strong>Contributor:</strong> <%= @meme.contributor.username %></p>
 </div>
 <div class="row text-center">
   <img src=<%= @meme.image_url %> alt=<%= @meme.name %> class="thumbnail">
