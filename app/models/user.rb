@@ -10,6 +10,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :contributed_memes, foreign_key: "contributor_id", class_name: "Meme"
+  has_many :reviews
 
   validates :first_name, presence: true
   validates :last_name, presence: true
