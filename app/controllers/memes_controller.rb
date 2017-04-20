@@ -24,6 +24,13 @@ class MemesController < ApplicationController
     @meme = Meme.find(params[:id])
   end
 
+  def destroy
+    @meme = Meme.find(params[:id])
+    @meme.destroy
+    flash[:success] = "Meme deleted successfully"
+    redirect_to memes_path
+  end
+
   def edit
     @meme = Meme.find(params[:id])
   end

@@ -7,7 +7,7 @@
 <div class="row text-center">
   <p><%= @meme.description %></p>
 </div>
-
 <div class="row">
   <h5><%= link_to 'Update a Meme', edit_meme_path  %></h5>
+  <h5><%= link_to 'Delete Meme', @meme, method: :delete, data: {confirm: "Are you sure?"} %></h5>
 </div>
