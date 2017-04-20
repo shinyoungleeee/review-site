@@ -1,0 +1,39 @@
+.top-bar {
+  background: image-url("weather.png");
+  margin-bottom: 2.5vh;
+
+  .menu {
+    background-color: transparent;
+  }
+
+  a {
+    color: $black;
+  }
+}
+
+.menu-text {
+  padding: 0;
+}
+
+.flash {
+  padding: 1em;
+  font-family: Helvetica, sans-serif;
+  color: $white;
+  font-weight: bold;
+}
+
+.notice {
+  background: #3B9089;
+}
+
+.alert {
+  background: $alert-color
+}
+
+.success {
+  background: $success-color
+}
+
+.errors {
+  background: $warning-color
+}
