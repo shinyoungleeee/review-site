@@ -2,6 +2,8 @@ require 'rails_helper'
 
 feature 'users can add memes' do
   scenario 'users adds new meme successfully' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
 
     visit new_meme_path
     expect(page).to have_content 'Submit a Meme'
@@ -14,14 +16,23 @@ feature 'users can add memes' do
 
     expect(page).to have_content 'Meme added successfully'
     expect(page).to have_content 'Conspiracy Keanu'
+    expect(page).to have_content "Contributor: #{user.username}"
     expect(page).to have_content 'Taken from the 1989 comedy film Bill & Ted’s Excellent Adventure'
   end
-
   scenario 'user does not provide proper information for a meme' do
+    user = FactoryGirl.create(:user)
+    login_as(user, :scope => :user)
+
     visit new_meme_path
 
     click_button 'Add Meme'
     expect(page).to have_content 'Name can\'t be blank'
     expect(page).to have_content 'Image url can\'t be blank'
+  end
+  scenario 'user is not signed in and should NOT see new meme form' do
+    visit new_meme_path
+
+    expect(page).to have_content 'Please sign in first.'
+    expect(page.first('h1')).to have_content 'Memes'
   end
 end
