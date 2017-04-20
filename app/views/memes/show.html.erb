@@ -7,3 +7,5 @@
 <div class="row text-center">
   <p><%= @meme.description %></p>
 </div>
+
+<%= link_to 'Delete Meme', @meme, method: :delete, data: {confirm: "Are you sure?"} %>
