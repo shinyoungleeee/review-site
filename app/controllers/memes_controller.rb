@@ -1,5 +1,5 @@
 class MemesController < ApplicationController
-  before_action :authenticate_user!, only: [:secret, :create]
+  before_action :authenticate_user!, only: [:create]
 
   def index
     @memes = Meme.all
@@ -54,12 +54,6 @@ class MemesController < ApplicationController
     else
       flash[:errors] = @meme.errors.full_messages.join(', ')
       render :edit
-    end
-  end
-
-  def secret
-    if current_user.admin
-
     end
   end
 
