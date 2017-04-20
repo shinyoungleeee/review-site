@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'user updates meme' do
   scenario 'user updates meme successfully' do
-
+    user = create(:user)
     aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
-    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.')
+    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.', contributor: user)
 
     visit edit_meme_path(ancient_aliens)
     expect(page).to have_content 'Update a Meme'
@@ -21,9 +21,10 @@ feature 'user updates meme' do
   end
 
   scenario 'user does not provide proper information for a meme' do
+    user = create(:user)
     aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
-    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.')
-
+    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.', contributor: user)
+    
     visit edit_meme_path(ancient_aliens)
     fill_in 'Name', with: ''
     fill_in 'Link to Image', with: ''
