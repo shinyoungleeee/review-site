@@ -1,8 +1,8 @@
 #error_explanation {
-  color: $alert-color;
   border: 1px solid $alert-color;
-  padding: 20px 20px 0 20px;
+  color: $alert-color;
   margin-bottom: 20px;
+  padding: 20px 20px 0;
 
   h2 {
     font-size: 1em;

@@ -30,6 +30,6 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   def name
-    self.first_name + " " + self.last_name
+    first_name + " " + last_name
   end
 end

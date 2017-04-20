@@ -9,7 +9,7 @@ RSpec.describe User, type: :model do
   it { should validate_uniqueness_of(:username) }
   it { should validate_length_of(:username).is_at_least(4).is_at_most(16) }
   it { should allow_values('username', 'username1', 'user_name', 'user.name', '_username').for(:username) }
-  it { should_not allow_values('user name', '.username', 'username.', 'user..name' ,'user-name').for(:username) }
+  it { should_not allow_values('user name', '.username', 'username.', 'user..name', 'user-name').for(:username) }
 
   it { should validate_presence_of(:email) }
   it { should validate_uniqueness_of(:email).case_insensitive }
