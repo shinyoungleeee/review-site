@@ -26,7 +26,6 @@ class MemesController < ApplicationController
 
   def edit
     @meme = Meme.find(params[:id])
-
   end
 
   def update
