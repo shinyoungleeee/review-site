@@ -6,11 +6,8 @@ feature 'users can delete memes' do
     visit meme_path(ancient_aliens)
     expect(page).to have_content 'Delete Meme'
 
-
-
     expect { click_link 'Delete Meme' }.to change(Meme, :count).by(-1)
 
     expect(page).to have_content 'Meme deleted successfully'
-
   end
 end

@@ -30,7 +30,7 @@ class MemesController < ApplicationController
     flash[:success] = "Meme deleted successfully"
     redirect_to memes_path
   end
- 
+
   def secret
   end
 
