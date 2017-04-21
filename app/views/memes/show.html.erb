@@ -32,23 +32,24 @@
   </div>
 <% end %>
 
-<div class="row text-center">
-  <h5><strong>Review this Meme</strong></h5>
-</div>
-<div class= "row">
-  <%= form_for [@meme, @review] do |f| %>
-    <div class="field">
-    <%= f.label :rating %>
-    <%= f.text_field :rating %>
-    </div>
-    <div class="field">
-    <%= f.label :body %>
-    <%= f.text_field :body %>
-    </div>
-    <div class="actions">
-      <%= f.submit "Add Review", class: "button"%>
-    </div>
-
+<div class="row">
+  <% if !@current_user_review %>
+    <h5 class="text-center">Review this Meme</h5>
+    <%= form_for [@meme, @review] do |f| %>
+      <div class="field">
+      <%= f.label :rating %>
+      <%= f.text_field :rating %>
+      </div>
+      <div class="field">
+      <%= f.label :body %>
+      <%= f.text_field :body %>
+      </div>
+      <div class="actions">
+        <%= f.submit "Add Review", class: "button"%>
+      </div>
+    <% end %>
+  <% else %>
+    <a href="#">Edit</a>
   <% end %>
   <p><%= link_to "Back", memes_path %></p>
 </div>
