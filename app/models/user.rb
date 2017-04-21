@@ -11,6 +11,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   has_many :contributed_memes, foreign_key: "contributor_id", class_name: "Meme"
   has_many :reviews
+  has_many :review_votes
 
   validates :first_name, presence: true
   validates :last_name, presence: true
