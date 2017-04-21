@@ -4,7 +4,7 @@ feature 'users can add a review to a meme' do
   scenario 'users adds new meme successfully' do
     meme = create(:meme)
     user = meme.contributor
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
 
     visit meme_path(meme)
     expect(page).to have_content 'Review this Meme'
@@ -21,7 +21,7 @@ feature 'users can add a review to a meme' do
   scenario 'user does not provide proper information for a review' do
     meme = create(:meme)
     user = meme.contributor
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
 
     visit meme_path(meme)
     click_button 'Add Review'
@@ -32,7 +32,7 @@ feature 'users can add a review to a meme' do
 
     meme = create(:meme)
     user = meme.contributor
-    login_as(user, :scope => :user)
+    login_as(user, scope: :user)
 
     visit meme_path(meme)
 
