@@ -22,4 +22,7 @@ RSpec.describe User, type: :model do
   it { should have_many(:reviews) }
   it { should have_many(:contributed_memes) }
   it { should have_many(:review_votes) }
+
+  let(:user) { create(:user) }
+  it { expect(user.name).to eq("#{user.first_name} #{user.last_name}") }
 end
