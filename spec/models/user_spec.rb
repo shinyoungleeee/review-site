@@ -18,4 +18,8 @@ RSpec.describe User, type: :model do
 
   it { should validate_presence_of(:encrypted_password) }
   it { should validate_length_of(:encrypted_password).is_at_least(6) }
+
+  it { should have_many(:reviews) }
+  it { should have_many(:contributed_memes) }
+  it { should have_many(:review_votes) }
 end
