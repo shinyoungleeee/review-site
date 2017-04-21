@@ -1,5 +1,8 @@
 Rails.application.routes.draw do
-  resources :memes
+  resources :memes do
+    resources :reviews
+    end
+  
 
   root 'memes#index'
 
