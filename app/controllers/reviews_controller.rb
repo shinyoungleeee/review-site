@@ -1,5 +1,4 @@
 class ReviewsController < ApplicationController
-
   def create
     @meme = Meme.find(params[:meme_id])
     @review = Review.new(review_params)
