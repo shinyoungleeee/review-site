@@ -3,6 +3,8 @@ require 'rails_helper'
 feature 'users can add a review to a meme' do
   scenario 'users adds new meme successfully' do
     meme = create(:meme)
+    user = meme.contributor
+    login_as(user, :scope => :user)
 
     visit meme_path(meme)
     expect(page).to have_content 'Review this Meme'
@@ -17,22 +19,22 @@ feature 'users can add a review to a meme' do
   end
 
   scenario 'user does not provide proper information for a review' do
+    meme = create(:meme)
+    user = meme.contributor
+    login_as(user, :scope => :user)
 
-    aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
-    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.')
-
-    visit meme_path(ancient_aliens)
-
+    visit meme_path(meme)
     click_button 'Add Review'
     expect(page).to have_content 'Rating can\'t be blank, Rating is not a number'
   end
 
   scenario 'user does not enter an integer for rating' do
 
-    aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
-    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.')
+    meme = create(:meme)
+    user = meme.contributor
+    login_as(user, :scope => :user)
 
-    visit meme_path(ancient_aliens)
+    visit meme_path(meme)
 
     fill_in 'Rating', with: "Q"
 
