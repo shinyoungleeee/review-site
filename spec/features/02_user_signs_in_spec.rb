@@ -2,12 +2,12 @@ require 'rails_helper'
 
 feature 'User signs in' do
   scenario 'user signs in successfully' do
-    create(:user)
+    user = create(:user)
 
     visit new_user_session_path
 
-    fill_in 'Email', with: 'frank@thetank.com'
-    fill_in 'Password', with: 'password123'
+    fill_in 'Email', with: user.email
+    fill_in 'Password', with: user.password
     click_on 'Log in'
 
     expect(page).to have_content 'Signed in successfully.'
@@ -18,10 +18,10 @@ feature 'User signs in' do
     click_on 'Log in'
     expect(page).to have_content 'Invalid Email or password.'
 
-    create(:user)
+    user = create(:user)
 
     visit new_user_session_path
-    fill_in 'Email', with: 'frank@thetank.com'
+    fill_in 'Email', with: user.email
     click_on 'Log in'
     expect(page).to have_content 'Invalid Email or password.'
   end

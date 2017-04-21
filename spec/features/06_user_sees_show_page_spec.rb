@@ -2,11 +2,12 @@ require 'rails_helper'
 
 feature 'visitor sees meme show page' do
   scenario 'user clicks meme name or image and sees meme title and image' do
+    user = create(:user)
     aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
     godfather_url = 'http://i2.kym-cdn.com/photos/images/newsfeed/000/174/143/finding-nemo-blanket.jpeg'
 
-    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'therefore aliens.')
-    baby_godfather = Meme.create(name: 'Baby Godfather', image_url: godfather_url)
+    ancient_aliens = Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'therefore aliens.', contributor: user)
+    baby_godfather = Meme.create(name: 'Baby Godfather', image_url: godfather_url, contributor: user)
 
     visit memes_path
     all('h3')[0].click
