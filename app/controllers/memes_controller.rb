@@ -32,6 +32,12 @@ class MemesController < ApplicationController
 
   def show
     @meme = Meme.find(params[:id])
+    @review = Review.new
+    @reviews = @meme.reviews
+    @current_user_review = false
+    if !@reviews.find_by_user_id(current_user).nil?
+      @current_user_review = true
+    end
   end
 
   def destroy
