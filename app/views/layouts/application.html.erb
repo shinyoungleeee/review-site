@@ -12,12 +12,15 @@
   </head>
 
   <body>
+    <div id="app">
+
+    </div>
     <% flash.each do |type, message| %>
       <div class="<%= "flash #{type}" %>">
          <%= message %>
       </div>
     <% end %>
-    
+
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="menu">
