@@ -11,3 +11,43 @@
 <div class="row">
   <h5><%= link_to 'Update a Meme', edit_meme_path  %></h5>
 </div>
+
+<div class="row">
+  <ul>
+    <% @reviews.each do |review| %>
+      <li>
+        <p>
+          <%= review.rating %>
+          <%= review.body %>
+        </p>
+      </li>
+    <% end %>
+  </ul>
+</div>
+
+<% unless @review.errors.empty? %>
+  <div>
+    <%= @meme.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
+<div class="row text-center">
+  <h5><strong>Review this Meme</strong></h5>
+</div>
+<div class= "row">
+  <%= form_for [@meme, @review] do |f| %>
+    <div class="field">
+    <%= f.label :rating %>
+    <%= f.text_field :rating %>
+    </div>
+    <div class="field">
+    <%= f.label :body %>
+    <%= f.text_field :body %>
+    </div>
+    <div class="actions">
+      <%= f.submit "Add Review", class: "button"%>
+    </div>
+
+  <% end %>
+  <p><%= link_to "Back", memes_path %></p>
+</div>

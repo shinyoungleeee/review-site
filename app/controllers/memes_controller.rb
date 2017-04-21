@@ -22,6 +22,10 @@ class MemesController < ApplicationController
 
   def show
     @meme = Meme.find(params[:id])
+    @review = Review.new
+    @reviews = @meme.reviews
+    @review.meme = @meme
+  
   end
 
   def edit
@@ -48,4 +52,9 @@ class MemesController < ApplicationController
   def meme_params
     params.require(:meme).permit(:name, :image_url, :description)
   end
+
+  # def review_params
+  #   params.require(:review).permit(:rating, :votes, :body)
+  # end
+
 end
