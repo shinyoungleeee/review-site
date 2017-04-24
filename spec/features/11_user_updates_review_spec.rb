@@ -33,7 +33,6 @@ feature 'user updates reviews' do
 
     click_button 'Update Review'
 
-
     expect(page).to have_content ' Rating can\'t be blank, Rating is not a number'
 
   end

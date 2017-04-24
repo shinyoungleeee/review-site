@@ -15,11 +15,12 @@ class ReviewsController < ApplicationController
   end
 
   def edit
-      @meme = Meme.find(params[:meme_id])
-      @review = Review.find(params[:id])
+    @meme = Meme.find(params[:meme_id])
+    @review = Review.find(params[:id])
   end
+
   def update
-    @meme= Meme.find(params[:meme_id])
+    @meme = Meme.find(params[:meme_id])
     @review = Review.find(params[:id])
     @new_review= @review.update_attributes(review_params)
     if @review.save
@@ -36,9 +37,7 @@ class ReviewsController < ApplicationController
     Review.find(params[:id]).destroy
     flash[:success] = "Review deleted successfully"
     redirect_to meme_path(@meme)
-
   end
-
 
   def review_params
     params.require(:review).permit(:rating, :votes, :body)
