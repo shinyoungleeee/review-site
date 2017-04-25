@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :reviews
 
     namespace :api do
-      resource :reviews, only: [:show, :update]
+      resource :reviews, only: [:show, :update, :destroy]
     end
   end
 

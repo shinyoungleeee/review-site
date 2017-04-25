@@ -8,6 +8,18 @@ class ReviewTile extends React.Component {
   }
 
   render() {
+    let editOrDelete = () => {
+      if (this.props.currentUser) {
+        return(
+          <div className="media-object-section">
+            <div className="button-group">
+              <a className="secondary button" href={`/memes/${this.props.memeId}/reviews/${this.props.id}/edit`}>Edit Review</a>
+              <button className="alert button" onClick={this.props.deleteHandler}>Delete Review</button>
+            </div>
+          </div>
+        )
+      }
+    };
     return (
       <div className="media-object">
         <div className="media-object-section">
@@ -19,6 +31,7 @@ class ReviewTile extends React.Component {
           <p><strong>Rating: {this.props.rating}</strong></p>
           <p>{this.props.body}</p>
         </div>
+        {editOrDelete()}
       </div>
     );
   }
