@@ -9,7 +9,6 @@ class MemesController < ApplicationController
     end
   end
 
-
   def new
     if current_user.nil?
       flash[:errors] = "Please sign in first."
@@ -67,7 +66,6 @@ class MemesController < ApplicationController
       render :edit
     end
   end
-
 
   private
 
