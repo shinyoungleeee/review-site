@@ -9,12 +9,16 @@ class ReviewTile extends React.Component {
 
   render() {
     return (
-      <div>
-        <p><strong>Rating: {this.props.rating}</strong></p>
-        <p>{this.props.body}</p>
-        <button onClick={this.props.upvoteHandler}>Upvote</button>
-        <h6>{this.props.voteCount}</h6>
-        <button onClick={this.props.downvoteHandler}>Downvote</button>
+      <div className="media-object">
+        <div className="media-object-section">
+          <button onClick={this.props.upvoteHandler}>&#128077;</button>
+          <h6>{this.props.voteCount}</h6>
+          <button onClick={this.props.downvoteHandler}>&#128078;</button>
+        </div>
+        <div className="media-object-section">
+          <p><strong>Rating: {this.props.rating}</strong></p>
+          <p>{this.props.body}</p>
+        </div>
       </div>
     );
   }
