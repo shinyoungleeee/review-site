@@ -14,16 +14,12 @@
 </div>
 
 <div class="row">
-  <ul>
-    <% @reviews.each do |review| %>
-      <li>
-        <p>
-          <%= review.rating %>
-          <%= review.body %>
-        </p>
-      </li>
-    <% end %>
-  </ul>
+  <h3>Reviews:</h3>
+  <div
+    id="app"
+    data-user-id="<%= @current_user_id %>"
+    >
+  </div>
 </div>
 
 <% unless @review.errors.empty? %>

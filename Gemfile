@@ -24,6 +24,7 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'valid_attribute'
   gem 'coveralls', require: false
+  gem 'faker', github: 'stympy/faker'
 end
 
 group :production do
