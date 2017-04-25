@@ -8,6 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'foundation-rails'
 gem 'devise'
+gem 'carrierwave', '~> 1.0'
+gem 'fog-aws'
 
 group :development do
   gem 'listen', '~> 3.0.5'
@@ -24,6 +26,8 @@ group :development, :test do
   gem 'shoulda-matchers', '~> 3.1'
   gem 'valid_attribute'
   gem 'coveralls', require: false
+  gem "dotenv-rails"
+  gem 'fog-aws'
 end
 
 group :production do
