@@ -10,11 +10,11 @@ class Review < ApplicationRecord
   attr_reader :current_user
 
   def upvotes
-    self.review_votes.where(upvote: true).length
+    review_votes.where(upvote: true).length
   end
 
   def downvotes
-    self.review_votes.where(downvote: true).length
+    review_votes.where(downvote: true).length
   end
 
   def vote_count
@@ -29,8 +29,8 @@ class Review < ApplicationRecord
     end
   end
 
-  def belongs_to_user?(user)
-    if self.user == user
+  def belongs_to_user?(tested_user)
+    if user == tested_user
       @current_user = true
     else
       @current_user = false

@@ -4,13 +4,13 @@ import ReviewTile from '../components/ReviewTile'
 
 class MemesShowContainer extends React.Component {
   constructor(props){
-    super(props)
+    super(props);
     this.state = {
       reviews: []
     };
 
-    this.updateReviewVote = this.updateReviewVote.bind(this)
-    this.deleteReview = this.deleteReview.bind(this)
+    this.updateReviewVote = this.updateReviewVote.bind(this);
+    this.deleteReview = this.deleteReview.bind(this);
   }
 
   componentDidMount() {
