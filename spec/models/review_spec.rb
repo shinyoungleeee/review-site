@@ -32,25 +32,49 @@ RSpec.describe Review, type: :model do
       10.times { create(:review_vote, review: review, upvote: true) }
       5.times { create(:review_vote, review: review, downvote: true) }
 
-      expect(review.downvotes).to eq(5)
+      expect(review.vote_count).to eq(5)
 
       10.times { create(:review_vote, review: review, downvote: true) }
 
-      expect(review.downvotes).to eq(-5)
+      expect(review.vote_count).to eq(-5)
     end
   end
 
-  describe '#did_user_vote?' do
-    it 'should take a single argument of a user object' do
+  describe '#did_user_vote?(user)' do
+    it 'should return true if the user has already voted' do
+      user = create(:user)
       review = create(:review)
-      10.times { create(:review_vote, review: review, upvote: true) }
-      5.times { create(:review_vote, review: review, downvote: true) }
+      create(:review_vote, review: review, user: user)
 
-      expect(review.downvotes).to eq(5)
+      expect(review.did_user_vote?(user)).to be true
+    end
 
-      10.times { create(:review_vote, review: review, downvote: true) }
+    it 'should return false if the user has NOT voted' do
+      user = create(:user)
+      review = create(:review)
+      create(:review_vote, review: review)
 
-      expect(review.downvotes).to eq(-5)
+      expect(review.did_user_vote?(user)).to be false
+    end
+  end
+
+  describe '#belongs_to_user?(user)' do
+    # This method was created for the purpose of sending current user data via
+    # the API endpoint
+    it '#current_user should return true if this review belongs to the user' do
+      user = create(:user)
+      review = create(:review, user: user)
+      review.belongs_to_user?(user)
+
+      expect(review.current_user).to be true
+    end
+
+    it '#current_user should return false if this review does NOT belong to the user' do
+      user = create(:user)
+      review = create(:review)
+      review.belongs_to_user?(user)
+
+      expect(review.current_user).to be false
     end
   end
 end
