@@ -6,7 +6,7 @@ class Api::ReviewsController < ApiController
     reviews.each do |review|
       review.belongs_to_user?(current_user)
     end
-    render json: reviews.to_json(include: [:review_votes], methods: [:vote_count, :current_user])
+    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :current_user]
   end
 
   def update
@@ -35,7 +35,10 @@ class Api::ReviewsController < ApiController
       end
     end
     reviews = Meme.find(params[:meme_id]).reviews
-    render json: reviews.to_json(include: [:review_votes], methods: [:vote_count])
+    reviews.each do |review|
+      review.belongs_to_user?(current_user)
+    end
+    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :current_user]
   end
 
   def destroy
@@ -46,7 +49,11 @@ class Api::ReviewsController < ApiController
       review = Review.find(delete_review_params[:review_id])
       review.review_votes.destroy_all
       review.destroy
-      render json: meme.reviews.to_json(include: [:review_votes], methods: [:vote_count])
+      reviews = meme.reviews
+      reviews.each do |review|
+        review.belongs_to_user?(current_user)
+      end
+      render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :current_user]
     end
   end
 

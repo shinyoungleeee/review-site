@@ -106,6 +106,7 @@ class MemesShowContainer extends React.Component {
           key={review.id}
           id={review.id}
           rating={review.rating}
+          author={review.user.username}
           body={review.body}
           voteCount={review.vote_count}
           upvoteHandler={upvoteHandler}

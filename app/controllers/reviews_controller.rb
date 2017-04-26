@@ -1,16 +1,16 @@
 class ReviewsController < ApplicationController
   def create
-    @meme = Meme.find(params[:meme_id])
-    @review = Review.new(review_params)
-    @review.meme = @meme
-    @review.user = current_user
+    meme = Meme.find(params[:meme_id])
+    review = Review.new(review_params)
+    review.meme = meme
+    review.user = current_user
 
-    if @review.save
+    if review.save
       flash[:success] = 'Review added successfully'
-      redirect_to meme_path(@meme)
+      redirect_to meme_path(meme)
     else
-      flash[:errors] = @review.errors.full_messages.join(', ')
-      redirect_to meme_path(@meme)
+      flash[:errors] = review.errors.full_messages.join(', ')
+      redirect_to meme_path(meme)
     end
   end
 
@@ -31,15 +31,6 @@ class ReviewsController < ApplicationController
       render :edit
     end
   end
-
-  # def destroy
-  #   meme = Meme.find(params[:meme_id])
-  #   review = Review.find(params[:id])
-  #   review.review_votes.destroy_all
-  #   review.destroy
-  #   flash[:success] = "Review deleted successfully"
-  #   redirect_to meme_path(meme)
-  # end
 
   private
 
