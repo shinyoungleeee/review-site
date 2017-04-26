@@ -8,7 +8,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
     storage :file
   else
     storage :fog
-end
+  end
+
 
 
   # Override the directory where uploaded files will be stored.

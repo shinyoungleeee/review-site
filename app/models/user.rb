@@ -31,6 +31,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
   mount_uploader :avatar_url, AvatarUploader
+  attr_accessor :file
 
   def name
     first_name + " " + last_name
