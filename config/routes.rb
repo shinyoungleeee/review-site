@@ -1,14 +1,14 @@
 Rails.application.routes.draw do
   resources :memes do
     resources :reviews
-
-    namespace :api do
-      resource :reviews, only: [:show, :update, :destroy]
-    end
   end
 
   namespace :api do
-    resource :memes, only: [:show]
+    namespace :v1 do
+      resources :memes, only: [:show] do
+        resources :reviews, only: [:index, :update, :destroy]
+      end
+    end
   end
 
   root 'memes#index'

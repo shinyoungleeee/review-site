@@ -14,7 +14,7 @@ class MemesShowContainer extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`/memes/${this.props.params.memeId}/api/reviews.json`, {credentials: 'same-origin'})
+    fetch(`/api/v1/memes/${this.props.params.memeId}/reviews.json`, {credentials: 'same-origin'})
       .then(response => {
         if (response.ok) {
           return response;
@@ -34,13 +34,12 @@ class MemesShowContainer extends React.Component {
   updateReviewVote(review_id, upvote) {
     let votePayload = {
       review_vote: {
-        review_id: review_id,
         upvote: upvote
       }
     }
-    fetch(`/memes/${this.props.params.memeId}/api/reviews.json`, {
+    fetch(`/api/v1/memes/${this.props.params.memeId}/reviews/${review_id}.json`, {
       credentials: 'same-origin',
-      method: 'PATCH',
+      method: 'PUT',
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(votePayload)
     })
@@ -61,17 +60,11 @@ class MemesShowContainer extends React.Component {
   }
 
   deleteReview(review_id) {
-    let deletePayload = {
-      delete_review: {
-        review_id: review_id
-      }
-    }
     if (confirm("Are you sure?")) {
-      fetch(`/memes/${this.props.params.memeId}/api/reviews.json`, {
+      fetch(`/api/v1/memes/${this.props.params.memeId}/reviews/${review_id}.json`, {
         credentials: 'same-origin',
         method: 'DELETE',
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(deletePayload)
+        headers: { "Content-Type": "application/json" }
       })
       .then(response => {
         if (response.ok) {

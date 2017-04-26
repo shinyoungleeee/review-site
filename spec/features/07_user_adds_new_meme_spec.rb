@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'users can add memes' do
   scenario 'users adds new meme successfully' do
-    user = FactoryGirl.create(:user)
+    user = create(:user)
     login_as(user, :scope => :user)
 
     visit new_meme_path

@@ -35,7 +35,7 @@ class ReviewTile extends React.Component {
           <p><strong>{this.props.author}: </strong>{this.props.body}</p>
         </div>
         <div className="small-3 columns">
-          <p>{editOrDelete()}</p>
+          {editOrDelete()}
         </div>
       </div>
     );
