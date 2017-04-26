@@ -26,6 +26,7 @@ group :development, :test do
   gem 'valid_attribute'
   gem 'coveralls', require: false
   gem 'dotenv-rails'
+  gem 'faker', github: 'stympy/faker'
 end
 
 group :production do

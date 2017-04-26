@@ -6,4 +6,6 @@ RSpec.describe Meme, type: :model do
   it { should validate_uniqueness_of(:name) }
   it { should validate_presence_of(:image_url) }
   it { should validate_presence_of(:contributor_id) }
+  it { should belong_to(:contributor) }
+  it { should have_many(:reviews) }
 end

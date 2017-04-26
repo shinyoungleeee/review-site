@@ -16,7 +16,8 @@ feature 'user updates reviews' do
     click_button 'Update Review'
 
     expect(page).to have_content 'Review updated successfully'
-    expect(page).to have_content 'thats funny'
+    # expect(page).to have_content 'thats funny'
+    # Review will appear in React.js
 
   end
   scenario 'user does not provide proper information for a meme' do

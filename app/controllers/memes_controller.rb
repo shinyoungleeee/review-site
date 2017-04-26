@@ -42,6 +42,10 @@ class MemesController < ApplicationController
     if !@reviews.find_by_user_id(current_user).nil?
       @current_user_review = true
     end
+    @current_user_id = 0
+    if !current_user.nil?
+      @current_user_id = current_user.id
+    end
   end
 
   def destroy
