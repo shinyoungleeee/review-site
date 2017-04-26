@@ -7,11 +7,10 @@ class ReviewsController < ApplicationController
 
     if review.save
       flash[:success] = 'Review added successfully'
-      redirect_to meme_path(meme)
     else
       flash[:errors] = review.errors.full_messages.join(', ')
-      redirect_to meme_path(meme)
     end
+    redirect_to meme_path(meme)
   end
 
   def edit
