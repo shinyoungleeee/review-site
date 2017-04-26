@@ -32,12 +32,16 @@ class ReviewsController < ApplicationController
     end
   end
 
-  def destroy
-    @meme= Meme.find(params[:meme_id])
-    Review.find(params[:id]).destroy
-    flash[:success] = "Review deleted successfully"
-    redirect_to meme_path(@meme)
-  end
+  # def destroy
+  #   meme = Meme.find(params[:meme_id])
+  #   review = Review.find(params[:id])
+  #   review.review_votes.destroy_all
+  #   review.destroy
+  #   flash[:success] = "Review deleted successfully"
+  #   redirect_to meme_path(meme)
+  # end
+
+  private
 
   def review_params
     params.require(:review).permit(:rating, :votes, :body)

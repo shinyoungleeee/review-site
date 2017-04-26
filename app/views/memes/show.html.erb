@@ -14,20 +14,8 @@
 </div>
 
 <div class="row">
-  <ul>
-    <% @reviews.each do |review| %>
-      <li>
-        <p>
-          <%= review.rating %>
-          <%= review.body %>
-          <%if @current_user_review  %>
-          <%= link_to "Edit Review", edit_meme_review_path(review.meme_id, review) %>
-          <%= link_to 'Delete Review', meme_review_path(review.meme, review), method: :delete, data: {confirm: "Are you sure?"} %>
-          <% end %>
-        </p>
-      </li>
-    <% end %>
-  </ul>
+  <h3>Reviews:</h3>
+  <div id="app"></div>
 </div>
 
 <% unless @review.errors.empty? %>
