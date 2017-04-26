@@ -14,9 +14,8 @@ class Root extends React.Component {
     return(
       <Router history={browserHistory}>
         <Route path='/' >
-          <Route path='memes' component={MemesIndexContainer}>
-            <Route path=':memeId' component={MemesShowContainer} />
-          </Route>
+          <Route path='memes' component={MemesIndexContainer} />
+          <Route path='memes/:memeId' component={MemesShowContainer} />
         </Route>
       </Router>
     )

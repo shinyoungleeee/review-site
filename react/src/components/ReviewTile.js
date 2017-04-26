@@ -21,17 +21,22 @@ class ReviewTile extends React.Component {
       }
     };
     return (
-      <div className="media-object">
-        <div className="media-object-section">
+      <div className="row">
+        <div className="small-1 columns text-center">
           <button onClick={this.props.upvoteHandler}>&#128077;</button>
           <h6>{this.props.voteCount}</h6>
           <button onClick={this.props.downvoteHandler}>&#128078;</button>
         </div>
-        <div className="media-object-section">
-          <p><strong>Rating: {this.props.rating}</strong></p>
-          <p>{this.props.body}</p>
+        <div className="small-1 columns text-center rating">
+          <p><strong>{this.props.rating}</strong></p>
+          <p><strong>RATING</strong></p>
         </div>
-        {editOrDelete()}
+        <div className="small-7 columns">
+          <p><strong>{this.props.author}: </strong>{this.props.body}</p>
+        </div>
+        <div className="small-3 columns">
+          <p>{editOrDelete()}</p>
+        </div>
       </div>
     );
   }

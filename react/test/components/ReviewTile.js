@@ -12,6 +12,7 @@ describe('ReviewTile', () => {
         key={1}
         id={1}
         rating={10}
+        author={"user"}
         body={'This is the body.'}
         voteCount={2}
         upvoteHandler={upvoteHandler}
@@ -23,12 +24,13 @@ describe('ReviewTile', () => {
     )
   })
 
-  it('should render a strong p tag with the rating props value', () => {
-    expect(wrapper.find('strong').text()).toBe('Rating: 10');
+  it('should render a div with the rating props value', () => {
+    expect(wrapper.find('.small-1.columns.text-center.rating').find('strong').at(0).text()).toBe('10');
+    expect(wrapper.find('.small-1.columns.text-center.rating').find('strong').at(1).text()).toBe('RATING');
   });
 
-  it('should render a regular p tag with the body props value', () => {
-    expect(wrapper.find('p').at(1).text()).toBe('This is the body.');
+  it('should render a div with the username and body props value', () => {
+    expect(wrapper.find('.small-7.columns').find('p').text()).toBe('user: This is the body.');
   });
 
   it('should render a h6 tag with the voteCount props value', () => {
