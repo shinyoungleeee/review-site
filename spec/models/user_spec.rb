@@ -25,4 +25,16 @@ RSpec.describe User, type: :model do
 
   let(:user) { create(:user) }
   it { expect(user.name).to eq("#{user.first_name} #{user.last_name}") }
+
+  describe "#admin?" do
+    it "is not an admin if the role is not admin" do
+      user = FactoryGirl.create(:user, admin: false)
+      expect(user.admin?).to eq(false)
+    end
+
+    it "is an admin if the role is admin" do
+      user = FactoryGirl.create(:user, admin: true)
+      expect(user.admin?).to eq(true)
+    end
+  end
 end

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :memes do
     resources :reviews
   end
-
+  resources :admins, only: [:index, :destroy] 
   namespace :api do
     namespace :v1 do
       resources :memes, only: [:show] do

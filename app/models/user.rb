@@ -36,4 +36,8 @@ class User < ApplicationRecord
   def name
     first_name + " " + last_name
   end
+
+  def admin?
+    admin == true
+  end
 end
