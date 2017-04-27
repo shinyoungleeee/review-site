@@ -1,0 +1,7 @@
+<% @users.each do |user| %>
+<ul>
+  <%= user.name %>
+  <%= link_to 'Delete User', admin_path(user), method: :delete, data: {confirm: "Are you sure?"} %>
+</ul>
+
+<% end %>

@@ -7,6 +7,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :admins, only: [:index, :destroy] 
+
   namespace :api do
     resource :memes, only: [:show]
   end
