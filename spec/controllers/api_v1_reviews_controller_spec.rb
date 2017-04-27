@@ -73,7 +73,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       it 'returns false when current user is NOT the author of the review' do
         user = create(:user)
         meme = create(:meme)
-        review = create(:review, meme: meme)
+        create(:review, meme: meme)
         sign_in user
 
         get :index, meme_id: meme.id
@@ -82,7 +82,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       end
       it 'returns false when no user signed in' do
         meme = create(:meme)
-        review = create(:review, meme: meme)
+        create(:review, meme: meme)
 
         get :index, meme_id: meme.id
 
