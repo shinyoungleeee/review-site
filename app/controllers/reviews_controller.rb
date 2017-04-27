@@ -7,6 +7,7 @@ class ReviewsController < ApplicationController
 
     if review.save
       flash[:success] = 'Review added successfully'
+      ReviewMailer.new_review(review).deliver_later
     else
       flash[:errors] = review.errors.full_messages.join(', ')
     end
