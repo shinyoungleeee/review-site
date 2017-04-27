@@ -6,8 +6,8 @@ class AdminsController < ApplicationController
   end
 
   def destroy
-   User.find(params[:id]).destroy
-   redirect_to admins_path
+    User.find(params[:id]).destroy
+    redirect_to admins_path
   end
 
   def authorize_user
