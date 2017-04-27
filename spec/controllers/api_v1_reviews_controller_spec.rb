@@ -31,7 +31,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     describe "it returns a vote_count" do
       it "returns 0 when there are 0 votes" do
         meme = create(:meme)
-        review = create(:review, meme: meme)
+        create(:review, meme: meme)
 
         get :index, meme_id: meme.id
 
@@ -52,7 +52,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       it 'with the username of the review author' do
         user = create(:user)
         meme = create(:meme)
-        review = create(:review, meme: meme, user: user)
+        create(:review, meme: meme, user: user)
 
         get :index, meme_id: meme.id
 
