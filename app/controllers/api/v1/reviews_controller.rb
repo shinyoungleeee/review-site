@@ -10,9 +10,7 @@ class Api::V1::ReviewsController < ApiController
   end
 
   def update
-    if current_user.nil?
-      flash[:notice] = "Please sign in first."
-    else
+    if !current_user.nil? && (review_vote_params[:upvote] == true || review_vote_params[:upvote] == false)
       review = Review.find(params[:id])
       review_votes = review.review_votes
       if review.did_user_vote?(current_user)
@@ -42,9 +40,7 @@ class Api::V1::ReviewsController < ApiController
   end
 
   def destroy
-    if current_user.nil?
-      flash[:notice] = "Please sign in first."
-    else
+    if !current_user.nil?
       meme = Meme.find(params[:meme_id])
       review = Review.find(params[:id])
       review.review_votes.destroy_all
