@@ -103,7 +103,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       expect(response.status).to eq 200
       expect(json_parsed_response.first.keys).to eq ["id", "rating", "body", "meme_id", "user_id", "created_at", "updated_at", "vote_count", "belongs_to_tested_user", "user"]
     end
-    it "does not post anything if a user is not signed in" do
+    it "requires user to be signed in" do
       meme = create(:meme)
       review = create(:review, meme: meme)
 
@@ -127,14 +127,13 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       sign_in user
 
       expect(ReviewVote.count).to eq 1
-      expect { ReviewVote.find(vote.id).upvote }.to be false
+      expect(ReviewVote.find(vote.id).upvote).to be false
 
-      put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true }
+      put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true } }, as: :json
 
       expect(ReviewVote.count).to eq 1
-      expect { ReviewVote.find(vote.id).upvote }.to be true
+      expect(ReviewVote.find(vote.id).upvote).to be true
     end
-
     # it "returns an error when the payload is incorrect" do
     #   sign_in(user)
     #   post :create, params: { post: incorrect_post_params }
@@ -143,5 +142,38 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
     #   expect(json_parsed_response.keys).to eq ["errors"]
     #   expect(json_parsed_response["errors"]).to eq({"summary" => ["can't be blank"], "url" => ["must be a valid URL"]})
     # end
+  end
+
+  describe "DELETE #destroy" do
+    it "returns the meme reviews as JSON" do
+      meme = create(:meme)
+      review = create(:review, meme: meme)
+      review_2 = create(:review, meme: meme)
+      user = create(:user)
+      sign_in user
+
+      delete :destroy, params: { meme_id: meme.id, id: review_2.id }, as: :json
+
+      expect(response.status).to eq 200
+      expect(json_parsed_response.first.keys).to eq ["id", "rating", "body", "meme_id", "user_id", "created_at", "updated_at", "vote_count", "belongs_to_tested_user", "user"]
+    end
+    it "requires user to be signed in" do
+      meme = create(:meme)
+      review = create(:review, meme: meme)
+
+      expect(Review.count).to eq 1
+
+      delete :destroy, params: { meme_id: meme.id, id: review.id }, as: :json
+
+      expect(Review.count).to eq 1
+    end
+    it "successfully deletes a review if review author is signed in" do
+      meme = create(:meme)
+      user = create(:user)
+      sign_in user
+      review = create(:review, meme: meme, user: user)
+
+      expect { delete :destroy, params: { meme_id: meme.id, id: review.id }, as: :json }.to change{ Review.count }.by -1
+    end
   end
 end
