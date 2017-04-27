@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'users can add memes' do
   scenario 'users adds new meme successfully' do
-    user = FactoryGirl.create(:user)
+    user = FactoryGirl.create(:user, admin: true)
     login_as(user, scope: :user)
     aliens_url = 'http://i3.kym-cdn.com/photos/images/newsfeed/000/158/326/9148130.jpg'
      Meme.create(name: 'Ancient Aliens', image_url: aliens_url, description: 'I don\'t know, therefore aliens.', contributor: user)

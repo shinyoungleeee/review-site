@@ -6,9 +6,7 @@ Rails.application.routes.draw do
       resource :reviews, only: [:show, :update, :destroy]
     end
   end
-
   resources :admins, only: [:index, :destroy] 
-
   namespace :api do
     resource :memes, only: [:show]
   end

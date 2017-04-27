@@ -1,6 +1,6 @@
 class MemesController < ApplicationController
   before_action :authenticate_user!, only: [:create]
-  before_action :authorize_user, only: [:new, :create]
+  before_action :authorize_user, only: [:create]
 
   def index
     if params[:search]
@@ -83,5 +83,4 @@ class MemesController < ApplicationController
       raise ActionController::RoutingError.new("Need Admin Credentials to add meme")
     end
   end
-
 end

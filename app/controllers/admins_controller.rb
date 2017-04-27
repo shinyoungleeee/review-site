@@ -1,18 +1,14 @@
 class AdminsController < ApplicationController
-    before_action :authorize_user, only: [:index, :destroy]
+  before_action :authorize_user, only: [:index, :destroy]
 
   def index
-    @users= User.all
+    @users = User.all
   end
 
   def destroy
-
-
    User.find(params[:id]).destroy
-
-
    redirect_to admins_path
- end
+  end
 
   def authorize_user
     if !current_user.admin?
