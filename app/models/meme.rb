@@ -9,4 +9,8 @@ class Meme < ApplicationRecord
   validates :image_url, presence: true
 
   validates :contributor_id, presence: true
+
+  def self.search(search)
+    where("name ILIKE ? ", "%#{search}%")
+  end
 end

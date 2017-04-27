@@ -2,7 +2,11 @@ class MemesController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
   def index
-    @memes = Meme.all
+    if params[:search]
+      @memes = Meme.search(params[:search])
+    else
+      @memes = Meme.all
+    end
   end
 
   def new
@@ -37,6 +41,10 @@ class MemesController < ApplicationController
     @current_user_review = false
     if !@reviews.find_by_user_id(current_user).nil?
       @current_user_review = true
+    end
+    @current_user_id = 0
+    if !current_user.nil?
+      @current_user_id = current_user.id
     end
   end
 

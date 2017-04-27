@@ -1,7 +1,11 @@
 <div class="row">
   <h1>Memes</h1>
-</div>
+  <%= form_tag(memes_path, :method => "get", id: "search-form") do %>
+      <%= text_field_tag :search, params[:search], placeholder: "Search Memes" %>
+      <%= submit_tag "Search", :name => nil %>
+  <% end %>
 
+</div>
 <% i = 0 %>
 <% while i < @memes.length do %>
   <div class="row text-center">
