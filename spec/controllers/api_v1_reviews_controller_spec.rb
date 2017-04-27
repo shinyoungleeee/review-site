@@ -12,6 +12,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
         get :index, meme_id: meme.id
 
         expect(response.status).to eq 200
+        expect(json_parsed_response.first.keys).to eq ["id", "rating", "body", "meme_id", "user_id", "created_at", "updated_at", "vote_count", "belongs_to_tested_user", "user"]
         expect(json_parsed_response.first["id"]).to eq(review.id)
       end
       it "as a signed in user" do
@@ -23,6 +24,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
         get :index, meme_id: meme.id
 
         expect(response.status).to eq 200
+        expect(json_parsed_response.first.keys).to eq ["id", "rating", "body", "meme_id", "user_id", "created_at", "updated_at", "vote_count", "belongs_to_tested_user", "user"]
         expect(json_parsed_response.first["id"]).to eq(review.id)
       end
     end
@@ -90,30 +92,56 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
   end
 
   describe "PUT/PATCH #update" do
-    let(:upvote_params) { review_vote: { upvote: true } }
-    let(:downvote_params) { review_vote: { upvote: false } }
-    let(:incorrect_params) { review_vote: { upvote: "true" } }
+    it "returns the meme reviews as JSON" do
+      meme = create(:meme)
+      review = create(:review, meme: meme)
+      user = create(:user)
+      sign_in user
 
-    it "it returns the nomination as JSON" do
-      sign_in(user)
-      post :create, params: { post: correct_post_params }
+      put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true } }, as: :json
 
       expect(response.status).to eq 200
-      expect(json_parsed_response.keys).to eq ["id", "summary", "url", "user_id", "created_at", "updated_at"]
+      expect(json_parsed_response.first.keys).to eq ["id", "rating", "body", "meme_id", "user_id", "created_at", "updated_at", "vote_count", "belongs_to_tested_user", "user"]
+    end
+    it "does not post anything if a user is not signed in" do
+      meme = create(:meme)
+      review = create(:review, meme: meme)
+
+      put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true } }, as: :json
+
+      expect(ReviewVote.count).to eq 0
+    end
+    it "successfully creates a review vote if current user has not voted" do
+      meme = create(:meme)
+      review = create(:review, meme: meme)
+      user = create(:user)
+      sign_in user
+
+      expect { put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true } }, as: :json }.to change{ ReviewVote.count }.by 1
+    end
+    it "successfully updates a review vote if current user has already voted" do
+      meme = create(:meme)
+      review = create(:review, meme: meme)
+      user = create(:user)
+      vote = create(:review_vote, review: review, user: user)
+      sign_in user
+
+      expect(ReviewVote.count).to eq 1
+      expect { ReviewVote.find(vote.id).upvote }.to be false
+
+      put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true }
+
+      expect(ReviewVote.count).to eq 1
+      expect { ReviewVote.find(vote.id).upvote }.to be true
     end
 
-    it "successfully creates a post" do
-      sign_in(user)
-      expect { post :create, params: { post: correct_post_params } }.to change{ Post.count }.by 1
-    end
-
-    it "returns an error when the payload is incorrect" do
-      sign_in(user)
-      post :create, params: { post: incorrect_post_params }
-
-      expect(response.status).to eq 422
-      expect(json_parsed_response.keys).to eq ["errors"]
-      expect(json_parsed_response["errors"]).to eq({"summary" => ["can't be blank"], "url" => ["must be a valid URL"]})
-    end
+    # it "returns an error when the payload is incorrect" do
+    #   sign_in(user)
+    #   post :create, params: { post: incorrect_post_params }
+    #
+    #   expect(response.status).to eq 422
+    #   expect(json_parsed_response.keys).to eq ["errors"]
+    #   expect(json_parsed_response["errors"]).to eq({"summary" => ["can't be blank"], "url" => ["must be a valid URL"]})
+    # end
   end
 end
