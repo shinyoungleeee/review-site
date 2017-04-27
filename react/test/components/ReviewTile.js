@@ -19,7 +19,7 @@ describe('ReviewTile', () => {
         downvoteHandler={downvoteHandler}
         memeId={1}
         deleteHandler={deleteHandler}
-        currentUser={true}
+        belongsToCurrentUser={true}
       />
     )
   })
@@ -65,7 +65,7 @@ describe('ReviewTile', () => {
         downvoteHandler={downvoteHandler}
         memeId={1}
         deleteHandler={deleteHandler}
-        currentUser={false}
+        belongsToCurrentUser={false}
       />
     )
     expect(wrapper.text()).not.toContain('Edit Review');
@@ -83,7 +83,7 @@ describe('ReviewTile', () => {
         downvoteHandler={downvoteHandler}
         memeId={1}
         deleteHandler={deleteHandler}
-        currentUser={false}
+        belongsToCurrentUser={false}
       />
     )
     expect(wrapper.text()).not.toContain('Delete Review');
