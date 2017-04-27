@@ -106,7 +106,7 @@ class MemesShowContainer extends React.Component {
           downvoteHandler={downvoteHandler}
           memeId={this.props.params.memeId}
           deleteHandler={deleteHandler}
-          currentUser={review.current_user}
+          belongsToCurrentUser={review.belongs_to_tested_user}
         />
       )
     })

@@ -4,9 +4,9 @@ class Api::V1::ReviewsController < ApiController
   def index
     reviews = Meme.find(params[:meme_id]).reviews
     reviews.each do |r|
-      r.belongs_to_user?(current_user)
+      r.check_belongs_to_user(current_user)
     end
-    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :current_user]
+    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user]
   end
 
   def update
@@ -36,9 +36,9 @@ class Api::V1::ReviewsController < ApiController
     end
     reviews = Meme.find(params[:meme_id]).reviews
     reviews.each do |r|
-      r.belongs_to_user?(current_user)
+      r.check_belongs_to_user(current_user)
     end
-    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :current_user]
+    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user]
   end
 
   def destroy
@@ -52,9 +52,9 @@ class Api::V1::ReviewsController < ApiController
     end
     reviews = Meme.find(params[:meme_id]).reviews
     reviews.each do |r|
-      r.belongs_to_user?(current_user)
+      r.check_belongs_to_user(current_user)
     end
-    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :current_user]
+    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user]
   end
 
   private

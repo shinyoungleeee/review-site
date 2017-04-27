@@ -58,23 +58,22 @@ RSpec.describe Review, type: :model do
     end
   end
 
-  describe '#belongs_to_user?(user)' do
-    # This method was created for the purpose of sending current user data via
-    # the API endpoint
-    it '#current_user should return true if this review belongs to the user' do
+  describe '#belongs_to_tested_user' do
+    it 'should return true if this review belongs to the user' do
       user = create(:user)
       review = create(:review, user: user)
-      review.belongs_to_user?(user)
+      # #check_belongs_to_user(tested_user) must be run first!
+      review.check_belongs_to_user(user)
 
-      expect(review.current_user).to be true
+      expect(review.belongs_to_tested_user).to be true
     end
 
     it '#current_user should return false if this review does NOT belong to the user' do
       user = create(:user)
       review = create(:review)
-      review.belongs_to_user?(user)
+      review.check_belongs_to_user(user)
 
-      expect(review.current_user).to be false
+      expect(review.belongs_to_tested_user).to be false
     end
   end
 end

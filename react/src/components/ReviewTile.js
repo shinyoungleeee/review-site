@@ -9,7 +9,7 @@ class ReviewTile extends React.Component {
 
   render() {
     let editOrDelete = () => {
-      if (this.props.currentUser) {
+      if (this.props.belongsToCurrentUser) {
         return(
           <div className="media-object-section">
             <div className="button-group">

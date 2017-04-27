@@ -18,13 +18,13 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       it "as a signed in user" do
         meme = create(:meme)
         review = create(:review, meme: meme)
-        # user = create(:user)
-        # login_as(user, :scope => :user)
+        user = create(:user)
+        sign_in user
 
         get :index, meme_id: meme.id
 
         expect(response.status).to eq 200
-        # expect(json_parsed_response.first["id"]).to eq(users_post.id)
+        expect(json_parsed_response.first["id"]).to eq(review.id)
       end
     end
   end
