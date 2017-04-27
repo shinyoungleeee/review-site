@@ -6,7 +6,17 @@ class Api::V1::ReviewsController < ApiController
     reviews.each do |r|
       r.check_belongs_to_user(current_user)
     end
-    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user]
+    if current_user.nil?
+      render json: {
+        reviews: JSON.parse(reviews.to_json(include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user])),
+        current_user: { admin: false }
+      }
+    else
+      render json: {
+        reviews: JSON.parse(reviews.to_json(include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user])),
+        current_user: JSON.parse(current_user.to_json(only: [:admin]))
+      }
+    end
   end
 
   def update
@@ -34,7 +44,17 @@ class Api::V1::ReviewsController < ApiController
     reviews.each do |r|
       r.check_belongs_to_user(current_user)
     end
-    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user]
+    if current_user.nil?
+      render json: {
+        reviews: JSON.parse(reviews.to_json(include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user])),
+        current_user: { admin: false }
+      }
+    else
+      render json: {
+        reviews: JSON.parse(reviews.to_json(include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user])),
+        current_user: JSON.parse(current_user.to_json(only: [:admin]))
+      }
+    end
   end
 
   def destroy
@@ -48,7 +68,17 @@ class Api::V1::ReviewsController < ApiController
     reviews.each do |r|
       r.check_belongs_to_user(current_user)
     end
-    render json: reviews, include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user]
+    if current_user.nil?
+      render json: {
+        reviews: JSON.parse(reviews.to_json(include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user])),
+        current_user: { admin: false }
+      }
+    else
+      render json: {
+        reviews: JSON.parse(reviews.to_json(include: [user: { only: [:username] }], methods: [:vote_count, :belongs_to_tested_user])),
+        current_user: JSON.parse(current_user.to_json(only: [:admin]))
+      }
+    end
   end
 
   private

@@ -16,7 +16,10 @@ describe('MemesShowContainer', () => {
   })
 
   it('should have the specifed initial state', () => {
-    expect(wrapper.state()).toEqual({ reviews: [] });
+    expect(wrapper.state()).toEqual({
+      reviews: [],
+      admin: false
+    });
   });
 
   it('should render a ReviewTile Component when this.state.reviews has a review', () => {
@@ -25,7 +28,10 @@ describe('MemesShowContainer', () => {
   });
 
   it('should render a ReviewTile Component with props of upvote and downvote functions', () => {
-    wrapper.setState({ reviews: [{id: 1, rating: 10, body: 'This is the body.', vote_count: 2, belongs_to_tested_user: true, user: { username: 'user'} }] })
+    wrapper.setState({
+      reviews: [{id: 1, rating: 10, body: 'This is the body.', vote_count: 2, belongs_to_tested_user: true, user: { username: 'user'} }],
+      admin: true
+    })
     expect(wrapper.find(ReviewTile).props()).toEqual({
       id: 1,
       rating: 10,
@@ -36,7 +42,8 @@ describe('MemesShowContainer', () => {
       downvoteHandler: jasmine.any(Function),
       memeId: "3",
       deleteHandler: jasmine.any(Function),
-      belongsToCurrentUser: true
+      belongsToCurrentUser: true,
+      admin: true
     });
   });
 
