@@ -2,7 +2,11 @@ require 'rails_helper'
 
 feature 'users can add memes' do
   scenario 'users adds new meme successfully' do
+<<<<<<< HEAD
     user = FactoryGirl.create(:user, admin: true)
+=======
+    user = create(:user)
+>>>>>>> master
     login_as(user, :scope => :user)
 
     visit new_meme_path
@@ -20,7 +24,9 @@ feature 'users can add memes' do
     expect(page).to have_content 'Taken from the 1989 comedy film Bill & Ted’s Excellent Adventure'
   end
   scenario 'user does not provide proper information for a meme' do
+
     user = FactoryGirl.create(:user, admin: true)
+
     login_as(user, :scope => :user)
 
     visit new_meme_path

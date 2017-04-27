@@ -7,8 +7,6 @@ class Review < ApplicationRecord
   belongs_to :meme
   has_many :review_votes
 
-  attr_reader :current_user
-
   def upvotes
     review_votes.where(upvote: true).length
   end
@@ -29,11 +27,19 @@ class Review < ApplicationRecord
     end
   end
 
-  def belongs_to_user?(tested_user)
+  def check_belongs_to_user(tested_user)
     if user == tested_user
-      @current_user = true
+      @tested_user = true
     else
-      @current_user = false
+      @tested_user = false
+    end
+  end
+
+  def belongs_to_tested_user
+    if @tested_user
+      true
+    else
+      false
     end
   end
 end

@@ -9,7 +9,7 @@ class ReviewTile extends React.Component {
 
   render() {
     let editOrDelete = () => {
-      if (this.props.currentUser) {
+      if (this.props.belongsToCurrentUser) {
         return(
           <div className="media-object-section">
             <div className="button-group">
@@ -35,7 +35,7 @@ class ReviewTile extends React.Component {
           <p><strong>{this.props.author}: </strong>{this.props.body}</p>
         </div>
         <div className="small-3 columns">
-          <p>{editOrDelete()}</p>
+          {editOrDelete()}
         </div>
       </div>
     );
