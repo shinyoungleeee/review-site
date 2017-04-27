@@ -14,7 +14,7 @@ class Api::V1::ReviewsController < ApiController
       review = Review.find(params[:id])
       review_votes = review.review_votes
       if review.did_user_vote?(current_user)
-        vote = review_votes.find { |vote| vote.user == current_user }
+        vote = review_votes.find { |v| v.user == current_user }
         if review_vote_params[:upvote] && !vote.upvote && !vote.downvote
           ReviewVote.update(vote, upvote: true)
         elsif review_vote_params[:upvote] && !vote.upvote && vote.downvote
@@ -24,12 +24,10 @@ class Api::V1::ReviewsController < ApiController
         elsif !review_vote_params[:upvote] && vote.upvote && !vote.downvote
           ReviewVote.update(vote, upvote: false)
         end
-      else
-        if review_vote_params[:upvote]
-          ReviewVote.create(review: review, upvote: true, user: current_user)
-        else
-          ReviewVote.create(review: review, downvote: true, user: current_user)
-        end
+      elsif review_vote_params[:upvote]
+        ReviewVote.create(review: review, upvote: true, user: current_user)
+      elsif !review_vote_params[:upvote]
+        ReviewVote.create(review: review, downvote: true, user: current_user)
       end
     end
     reviews = Meme.find(params[:meme_id]).reviews
@@ -41,7 +39,7 @@ class Api::V1::ReviewsController < ApiController
 
   def destroy
     if !current_user.nil?
-      meme = Meme.find(params[:meme_id])
+      Meme.find(params[:meme_id])
       review = Review.find(params[:id])
       review.review_votes.destroy_all
       review.destroy

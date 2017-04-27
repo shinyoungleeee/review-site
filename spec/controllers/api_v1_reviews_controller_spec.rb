@@ -117,7 +117,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       user = create(:user)
       sign_in user
 
-      expect { put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true } }, as: :json }.to change{ ReviewVote.count }.by 1
+      expect { put :update, params: { meme_id: meme.id, id: review.id, review_vote: { upvote: true } }, as: :json }.to change { ReviewVote.count }.by 1
     end
     it "successfully updates a review vote if current user has already voted" do
       meme = create(:meme)
@@ -147,12 +147,12 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
   describe "DELETE #destroy" do
     it "returns the meme reviews as JSON" do
       meme = create(:meme)
+      create(:review, meme: meme)
       review = create(:review, meme: meme)
-      review_2 = create(:review, meme: meme)
       user = create(:user)
       sign_in user
 
-      delete :destroy, params: { meme_id: meme.id, id: review_2.id }, as: :json
+      delete :destroy, params: { meme_id: meme.id, id: review.id }, as: :json
 
       expect(response.status).to eq 200
       expect(json_parsed_response.first.keys).to eq ["id", "rating", "body", "meme_id", "user_id", "created_at", "updated_at", "vote_count", "belongs_to_tested_user", "user"]
@@ -173,7 +173,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
       sign_in user
       review = create(:review, meme: meme, user: user)
 
-      expect { delete :destroy, params: { meme_id: meme.id, id: review.id }, as: :json }.to change{ Review.count }.by -1
+      expect { delete :destroy, params: { meme_id: meme.id, id: review.id }, as: :json }.to change { Review.count }.by -1
     end
   end
 end
