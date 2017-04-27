@@ -5,7 +5,7 @@ class ReviewsController < ApplicationController
     @review.meme = @meme
     @review.user = current_user
 
-  if @review.save
+    if @review.save
        flash[:success] = 'Review added successfully'
        ReviewMailer.new_review(@review).deliver_later
        redirect_to meme_path(@meme)
