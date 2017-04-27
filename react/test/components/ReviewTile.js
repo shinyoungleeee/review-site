@@ -20,6 +20,7 @@ describe('ReviewTile', () => {
         memeId={1}
         deleteHandler={deleteHandler}
         belongsToCurrentUser={true}
+        admin={false}
       />
     )
   })
@@ -49,11 +50,7 @@ describe('ReviewTile', () => {
     expect(wrapper.find('a').find('.button').text()).toBe('Edit Review');
   });
 
-  it('should render a button tag with the value Delete Review if currentUser props is true', () => {
-    expect(wrapper.find('button').at(2).text()).toBe('Delete Review');
-  });
-
-  it('should NOT render a button tag with the value Edit Review if currentUser props is false', () => {
+  it('should render a button tag with the value Edit Review if admin props is true', () => {
     wrapper = mount(
       <ReviewTile
         key={1}
@@ -66,12 +63,55 @@ describe('ReviewTile', () => {
         memeId={1}
         deleteHandler={deleteHandler}
         belongsToCurrentUser={false}
+        admin={true}
+      />
+    )
+    expect(wrapper.find('a').find('.button').text()).toBe('Edit Review');
+  });
+
+  it('should render a button tag with the value Delete Review if currentUser props is true', () => {
+    expect(wrapper.find('button').at(2).text()).toBe('Delete Review');
+  });
+
+  it('should render a button tag with the value Delete Review if admin props is true', () => {
+    wrapper = mount(
+      <ReviewTile
+        key={1}
+        id={1}
+        rating={10}
+        body={'This is the body.'}
+        voteCount={2}
+        upvoteHandler={upvoteHandler}
+        downvoteHandler={downvoteHandler}
+        memeId={1}
+        deleteHandler={deleteHandler}
+        belongsToCurrentUser={false}
+        admin={true}
+      />
+    )
+    expect(wrapper.find('button').at(2).text()).toBe('Delete Review');
+  });
+
+  it('should NOT render a button tag with the value Edit Review if currentUser and admin props are false', () => {
+    wrapper = mount(
+      <ReviewTile
+        key={1}
+        id={1}
+        rating={10}
+        body={'This is the body.'}
+        voteCount={2}
+        upvoteHandler={upvoteHandler}
+        downvoteHandler={downvoteHandler}
+        memeId={1}
+        deleteHandler={deleteHandler}
+        belongsToCurrentUser={false}
+        admin={false}
       />
     )
     expect(wrapper.text()).not.toContain('Edit Review');
   });
 
-  it('should NOT render a button tag with the value Delete Review if currentUser props is false', () => {
+  it('should NOT render a button tag with the value Delete Review if currentUser and admin props are false', () => {
     wrapper = mount(
       <ReviewTile
         key={1}
@@ -84,6 +124,7 @@ describe('ReviewTile', () => {
         memeId={1}
         deleteHandler={deleteHandler}
         belongsToCurrentUser={false}
+        admin={false}
       />
     )
     expect(wrapper.text()).not.toContain('Delete Review');

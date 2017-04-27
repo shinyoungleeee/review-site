@@ -6,7 +6,8 @@ class MemesShowContainer extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      reviews: []
+      reviews: [],
+      admin: false
     };
 
     this.updateReviewVote = this.updateReviewVote.bind(this);
@@ -26,7 +27,10 @@ class MemesShowContainer extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ reviews: body });
+        this.setState({
+          reviews: body.reviews,
+          admin: body.current_user.admin
+        });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -54,7 +58,10 @@ class MemesShowContainer extends React.Component {
     })
     .then(response => response.json())
     .then(body => {
-      this.setState({ reviews: body });
+      this.setState({
+        reviews: body.reviews,
+        admin: body.current_user.admin
+      });
     })
     .catch(error => console.error(`Error in fetch: ${error.message}`));
   }
@@ -77,7 +84,10 @@ class MemesShowContainer extends React.Component {
       })
       .then(response => response.json())
       .then(body => {
-        this.setState({ reviews: body });
+        this.setState({
+          reviews: body.reviews,
+          admin: body.current_user.admin
+        });
       })
       .catch(error => console.error(`Error in fetch: ${error.message}`));
     }
@@ -107,6 +117,7 @@ class MemesShowContainer extends React.Component {
           memeId={this.props.params.memeId}
           deleteHandler={deleteHandler}
           belongsToCurrentUser={review.belongs_to_tested_user}
+          admin={this.state.admin}
         />
       )
     })
