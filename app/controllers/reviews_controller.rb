@@ -6,12 +6,12 @@ class ReviewsController < ApplicationController
     @review.user = current_user
 
     if @review.save
-       flash[:success] = 'Review added successfully'
-       ReviewMailer.new_review(@review).deliver_later
-       redirect_to meme_path(@meme)
-     else
-       flash[:errors] = @review.errors.full_messages.join(', ')
-       redirect_to meme_path(@meme)
+      flash[:success] = 'Review added successfully'
+      ReviewMailer.new_review(@review).deliver_later
+      redirect_to meme_path(@meme)
+    else
+      flash[:errors] = @review.errors.full_messages.join(', ')
+      redirect_to meme_path(@meme)
      end
    end
 
