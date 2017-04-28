@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <title><%= content_for?(:title) ? yield(:title) : "Memes" %></title>
+    <title><%= content_for?(:title) ? yield(:title) : "Take On Meme" %></title>
 
     <%= stylesheet_link_tag    "application" %>
     <%= javascript_include_tag "application" %>
@@ -21,7 +21,7 @@
     <div class="top-bar">
       <div class="top-bar-left">
         <ul class="menu">
-          <li class="menu-text"><%= link_to "Home", root_path %></li>
+          <li class="menu-text"><%= link_to "Take On Meme", root_path %></li>
           <li><%= link_to "Memes", memes_path %></li>
           <li><a href="#">Categories</a></li>
         </ul>
@@ -29,9 +29,9 @@
       <div class="top-bar-right">
         <ul class="menu">
           <% if signed_in? %>
-            <li><%= current_user.email %></li>
-            <li>     <img src="<%= current_user.avatar_url %> " alt="" height=50 width=50>  </li>
-            <li>  <%= link_to "Edit Profile", edit_user_registration_path %>  </li>
+            <li class="username"><%= current_user.username %></li>
+            <li><img class="avatar" src="<%= current_user.avatar_url %>" alt="user-avatar"></li>
+            <li><%= link_to "Edit Profile", edit_user_registration_path %></li>
             <li><%= link_to "Sign out", destroy_user_session_path, data: { method: 'delete' } %></li>
           <% else %>
             <li><%= link_to "Sign in", new_user_session_path %></li>
