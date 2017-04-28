@@ -1,7 +1,18 @@
+<div class="row">
+  <h1>Users</h1>
+</div>
 <% @users.each do |user| %>
-<ul>
-  <%= user.name %>
-  <%= link_to 'Delete User', admin_path(user), method: :delete, data: {confirm: "Are you sure?"} %>
-</ul>
-
+  <div class="row">
+    <div class="small-2 columns">
+      <h4><%= user.name %></h4>
+    </div>
+    <div class="small-10 columns">
+      <%= link_to 'Delete User', admin_path(user), method: :delete, data: {confirm: "Are you sure?"}, class: "alert button" %>
+      <% if !user.admin %>
+        <%= link_to 'Make Admin', admin_make_admin_path(user), data: {confirm: "Are you sure?"}, class: "success button" %>
+      <% else %>
+        <%= link_to 'Remove Admin', admin_remove_admin_path(user), data: {confirm: "Are you sure?"}, class: "warning button" %>
+      <% end %>
+    </div>
+  </div>
 <% end %>
