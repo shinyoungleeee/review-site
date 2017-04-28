@@ -1,6 +1,7 @@
 .top-bar {
   background: image-url("weather.png");
   margin-bottom: 2em;
+  padding-top: 1rem;
   padding-bottom: 0;
 
   .menu {
@@ -46,9 +47,9 @@
 }
 
 .avatar {
-  height: 80px;
+  height: 90px;
   margin-left: 15px;
-  margin-top: -0.5rem;
+  margin-top: -1rem;
 }
 
 .username {
