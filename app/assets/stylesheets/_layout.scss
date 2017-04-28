@@ -1,13 +1,21 @@
 .top-bar {
   background: image-url("weather.png");
-  margin-bottom: 2.5vh;
+  margin-bottom: 2em;
+  padding-bottom: 0;
+  padding-top: 1rem;
 
   .menu {
     background-color: transparent;
   }
 
-  a {
-    color: $black;
+  li {
+    font-family: 'Ranga', cursive;
+    font-size: 1.5em;
+  }
+
+  .menu-text {
+    font-family: 'Timmana', sans-serif;
+    font-size: 3em;
   }
 }
 
@@ -36,4 +44,15 @@
 
 .errors {
   background: $warning-color
+}
+
+.avatar {
+  height: 90px;
+  margin-left: 15px;
+  margin-top: -1rem;
+}
+
+.username {
+  color: $primary-color;
+  font-weight: bold;
 }

@@ -1,11 +1,15 @@
 <div class="row">
-  <h1>Memes</h1>
+  <h1 class="meme-search">Memes</h1>
   <%= form_tag(memes_path, :method => "get", id: "search-form") do %>
-      <%= text_field_tag :search, params[:search], placeholder: "Search Memes" %>
-      <%= submit_tag "Search", :name => nil %>
+    <div class="input-group">
+      <%= text_field_tag :search, params[:search], placeholder: "Search Memes", class: "input-group-field" %>
+      <div class="input-group-button">
+        <%= submit_tag "Search", :name => nil, class: "search-button button" %>
+      </div>
+    </div>
   <% end %>
-
 </div>
+
 <% i = 0 %>
 <% while i < @memes.length do %>
   <div class="row text-center">
@@ -13,21 +17,25 @@
       <h3><%= link_to @memes[i].name, meme_path(@memes[i].id) %></h3>
       <%= link_to image_tag(@memes[i].image_url, :alt => @memes[i].name, :class => "thumbnail"), meme_path(@memes[i].id) %>
       <% if user_signed_in? && current_user.admin? %>
-        <%= link_to 'Delete Meme', @memes[i], method: :delete, data: {confirm: "Are you sure?"} %>
+        <%= link_to 'Delete Meme', @memes[i], method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
       <% end %>
     </div>
     <div class="small-12 large-4 columns">
       <% if @memes[i+1] %>
         <h3><%= link_to @memes[i+1].name, meme_path(@memes[i+1].id) %></h3>
         <%= link_to image_tag(@memes[i+1].image_url, :alt => @memes[i+1].name, :class => "thumbnail"), meme_path(@memes[i+1].id) %>
-        <%= link_to 'Delete Meme', @memes[i+1], method: :delete, data: {confirm: "Are you sure?"} %>
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to 'Delete Meme', @memes[i+1], method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
+        <% end %>
       <% end %>
     </div>
     <div class="small-12 large-4 columns">
       <% if @memes[i+2] %>
         <h3><%= link_to @memes[i+2].name, meme_path(@memes[i+2].id) %></h3>
         <%= link_to image_tag(@memes[i+2].image_url, :alt => @memes[i+2].name, :class => "thumbnail"), meme_path(@memes[i+2].id) %>
-        <%= link_to 'Delete Meme', @memes[i+1], method: :delete, data: {confirm: "Are you sure?"} %>
+        <% if user_signed_in? && current_user.admin? %>
+          <%= link_to 'Delete Meme', @memes[i+1], method: :delete, data: {confirm: "Are you sure?"}, class: "button" %>
+        <% end %>
       <% end %>
     </div>
   </div>
